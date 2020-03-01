@@ -6,7 +6,6 @@ class Player{
     var weapons : [Weapon]
     private var selectedWeapon : Int = 0
     private static var MAX_HEALTH : Int = 100
-    private static var randomDodge : Bool = false
     private var alive : Bool
     
     // CONSTUCTOR
@@ -15,11 +14,11 @@ class Player{
         self.health = pHealth
         self.alive = true
         var tempArray : [Weapon] = [Weapon]()
-        let weapon1 = Weapon(gunName : "Pistol", gunDamage: 1 , numBullet:  7 )
-        let weapon2 = Weapon(gunName : "Shotgun", gunDamage: 10 , numBullet:  2 )
+        let weapon1:Weapon = Weapon(10, "pistol", 10)
+
             
         tempArray.append(weapon1)
-        tempArray.append(weapon2)
+
         self.weapons = tempArray
         self.selectedWeapon = 0
     }
@@ -102,6 +101,16 @@ class Player{
                 self.setHealth(health: self.getHealth() - otherPlayerDamage)
             }
         }
+        
+        if !self.isAlive() {
+            print("\(self.getName()) is dead")
+        }
+        
+        if !otherPlayer.isAlive() {
+            print("\(otherPlayer.getName()) is dead")
+        }
+        
+  
     }
         
     func upgradeWeapon(){
@@ -115,8 +124,8 @@ class Player{
     // check if the player dodge when he is under attack
     func dodge() -> Bool
     {
-        Player.randomDodge = Bool.random()
-        return Player.randomDodge
+        return  Bool.random()
+        //return false
     }
     
 }

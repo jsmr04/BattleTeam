@@ -10,6 +10,7 @@ import SpriteKit
 
 class MenuScene: SKScene {
     override func didMove(to view: SKView) {
+           
         backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha:1.0)
         addBackground()
         addLabels()
@@ -19,6 +20,7 @@ class MenuScene: SKScene {
         let background = SKSpriteNode(imageNamed: "mainScreenBackground")
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.size = frame.size
+        background.zPosition = ZPosition.background
         background.anchorPoint = CGPoint(x: 0.5,y: 0.5)
 
         self.addChild(background)
@@ -37,6 +39,7 @@ class MenuScene: SKScene {
         playLabel.fontSize = 90.0
         //playLabel.color = UIColor.white
         playLabel.fontColor = UIColor.black
+        playLabel.zPosition = ZPosition.label
         playLabel.position = CGPoint(x: frame.midX, y: frame.midY - 100)
         addChild(playLabel)
         animate(label: playLabel)

@@ -1,47 +1,56 @@
+//
+//  Weapon.swift
+//  Weapon
+//
+//  Created by Jaldeep Patel on 2020-02-26.
+//  Copyright © 2020 Jaldeep Patel. All rights reserved.
+//
+
 import UIKit
 
-class Weapon
-{
-    var name : String = "NO GUN"
-    var numBullets : Int = 0
-    var damage : Int = 0
-    var maxNumberOfBullets : Int = 100
+// Parent Weapon Class
+public class Weapon {
+    var name: String
+    var numBullets: Int
+    internal var damage :Int
+    private let maxNoOfBullets: Int = 30
 
-    init(gunName : String , gunDamage : Int , numBullet : Int ) {
-        self.setNumOfBullets(numberOfBulltes: numBullet)
-        self.setDamage(newDamage: gunDamage)
-        self.setName(newName: gunName)
-    }
     func getName() -> String {
         return self.name
     }
-    func setName(newName : String) {
-        self.name = newName
+    func setName(name: String) {
+        self.name = name
     }
-    func getNumOfBulltes() -> Int {
+    func getNumBullets() -> Int {
         return self.numBullets
     }
-    func setNumOfBullets(numberOfBulltes : Int){
-        self.numBullets = numberOfBulltes
+    func setNumBullets(numBullets :Int) {
+        self.numBullets = numBullets
     }
     func getDamage() -> Int {
         return self.damage
     }
-    func setDamage(newDamage : Int){
-        self.damage = newDamage
-    }
-    func setMaxNumberOfBullets(numOfBullets : Int){
-        self.maxNumberOfBullets = numOfBullets
-    }
-    func getNumberOfBullets() -> Int {
-        return self.maxNumberOfBullets
-    }
-    func reload(){
-        self.setNumOfBullets(numberOfBulltes: maxNumberOfBullets)
-    }
-    // abstract method
-    static func fire()  {
-        preconditionFailure("Method must be overritten")
+    func setDamage(damage :Int) {
+        self.damage = damage
     }
     
+//Constructor of Class Weapon
+    init(_ numBullets :Int, _ name: String, _ damage: Int) {
+        self.numBullets = numBullets
+        self.name = name
+        self.damage = damage
+    }
+    
+//Function reload to set number of bullets to maximum numbers of bullets
+    func reload() -> Int {
+        self.setNumBullets(numBullets: self.maxNoOfBullets)
+        return self.getNumBullets()
+    }
+
+    func fire() -> Int {
+        return 0
+    }
 }
+
+
+

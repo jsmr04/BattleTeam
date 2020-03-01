@@ -13,8 +13,9 @@ enum PhysicsCategories{
 }
 
 enum ZPosition{
-    static let team:CGFloat = 0
-    static let label:CGFloat = 1
+    static let background:CGFloat = 0
+    static let team:CGFloat = 1
+    static let label:CGFloat = 2
 }
 
 enum GameStatus{
@@ -26,5 +27,5 @@ enum Effects{
 }
 
 enum TeamCharacteristic{
-    static let defaultSize:CGFloat = 10
+    static let defaultSize:CGFloat = 15
 }

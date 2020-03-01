@@ -48,12 +48,10 @@ class Team
         self.players = newPlayers
     }
     func showPlayers() -> [Player]{
+        checkedPlayers = [Player]()
         for p in self.getPlayers(){
             if p.isAlive(){
                 checkedPlayers.append(p)
-            }
-            else{
-                print("Dead")
             }
         }
         return checkedPlayers
@@ -83,7 +81,11 @@ class Team
         self.calculateRadius()
     }
     
+    func isEqual(_ team: Team) -> Bool{
+        return self.getName() == team.getName()
+    }
+    
     func calculateRadius(){
-        self.radius = self.players.count * Team.self.BASE_RADIUS
+        self.radius = self.showPlayers().count * Team.self.BASE_RADIUS
     }
 }

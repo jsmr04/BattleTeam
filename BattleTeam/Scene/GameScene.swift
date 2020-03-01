@@ -22,7 +22,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         setupPhysics()
-        //addBackground()
+        addBackground()
         layoutScene()
     }
     func layoutScene(){
@@ -77,8 +77,8 @@ class GameScene: SKScene {
     
     func addTeamLabel(team:Team, position:CGPoint){
         let teamLabel = SKLabelNode(text: "\(team.getName()): \(team.getPlayers().count)")
-        teamLabel.name = "\(team.getName())_Label"
-        //teamLabel.fontColor = team.getColour()
+        teamLabel.name = "\(team.getName())_label"
+        teamLabel.fontColor = UIColor.white
         teamLabel.fontSize = 25
         teamLabel.horizontalAlignmentMode = .left
         teamLabel.fontName = "Helvetica-Bold"
@@ -185,7 +185,7 @@ class GameScene: SKScene {
         return frames
     }
     func addBackground(){
-        let background = SKSpriteNode(imageNamed: "mainScreenBackground")
+        let background = SKSpriteNode(imageNamed: "gameBackground")
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.size = frame.size
         background.anchorPoint = CGPoint(x: 0.5,y: 0.5)
@@ -214,33 +214,20 @@ class GameScene: SKScene {
     }
     
     func getTeamByName(teamName:String)->Team{
-        var team:Team?
         
-        for t in teams{
-            if t.getName() == teamName{
-                team = t
-                break
-            }
-        }
+        let index:Int? = self.teams.firstIndex(where: { $0.getName() == teamName })
         
-        return team!
+        return teams[index!]
     }
     
-    func getTeamIndexByName(teamName:String)->Int{
-        var index:Int = -1
-        var countIndex: Int = 0
+    func getIndexOfTeamByName(teamName:String)->Int{
         
-        for t in teams{
-            if t.getName() == teamName{
-                index = countIndex
-                break
-            }
-            countIndex = countIndex + 1
-        }
+        let index:Int? = self.teams.firstIndex(where: { $0.getName() == teamName })
         
-        return index
+        return index ?? -1
     }
     
+   
     func showWinner(team:Team){
         let winnerLabel = SKLabelNode(text: "Winner")
         winnerLabel.color = UIColor.white
@@ -275,6 +262,32 @@ class GameScene: SKScene {
         
     }
     
+    func updateLabel(team:Team){
+        let label:SKLabelNode = self.childNode(withName: team.getName() + "_label") as! SKLabelNode
+        
+        if team.showPlayers().count <= 0{
+            label.fontColor = UIColor.red
+        }
+        label.text = "\(team.getName()): \(team.showPlayers().count)"
+        
+        //TODO: Working here
+    }
+    
+    func updateSize(team:Team){
+        let defaultSize:CGFloat = frame.size.width / TeamCharacteristic.defaultSize
+
+        team.getSprite().size = CGSize(width: defaultSize + CGFloat(team.getRadius()), height: defaultSize + CGFloat(team.getRadius()))
+        team.getSprite().physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: team.getImageName()), size: CGSize(width: defaultSize + CGFloat(team.getRadius()) , height: defaultSize + CGFloat(team.getRadius())))
+        team.getSprite().physicsBody?.allowsRotation = false
+        team.getSprite().physicsBody?.categoryBitMask = PhysicsCategories.teamCategory
+        team.getSprite().physicsBody?.contactTestBitMask = PhysicsCategories.teamCategory
+        team.getSprite().zPosition = ZPosition.team
+        
+        run(SKAction.wait(forDuration: 1))
+            print("Resize \(team.getName())")
+        
+    }
+    
     func destroyTeam(team:Team){
         
         let texture:[SKTexture] = effect(.explosion)
@@ -286,8 +299,14 @@ class GameScene: SKScene {
             //Removing sprite from the scene
             team.getSprite().removeFromParent()
             //Removing team from the list
-            self.teams.remove(at: self.getTeamIndexByName(teamName: team.getName()))
+            //self.teams.remove(at: self.getIndexTeamByName(teamName: team.getName()))
+            let index:Int? = self.teams.firstIndex(where: { $0.getName() == team.getName() })
             
+            if index! >= 0{
+                self.teams.remove(at: index!)
+                print("removing \(team.getName()), index \(index!)")
+            }
+                
             if self.checkWinner(){
                self.stopSprites()
                 print("Winner: \(self.teams[0].getName())")
@@ -322,17 +341,44 @@ extension GameScene:SKPhysicsContactDelegate{
         if status == GameStatus.playing{
         if contact.bodyA.categoryBitMask == PhysicsCategories.teamCategory && contact.bodyB.categoryBitMask == PhysicsCategories.teamCategory {
             
-            let teamA = self.getTeamByName(teamName: contact.bodyA.node?.name ?? "")
-            let teamB = self.getTeamByName(teamName: contact.bodyB.node?.name ?? "")
-            
-            print("Body A \(String(describing: teamA.getName())), Body B \(String(describing: teamB.getName()))")
-            
             self.stopSprites()
             
-            let loser = conflict.fight(teamA, teamB)
-            print(loser)
-            destroyTeam(team: teamB)
+            let teamAName = contact.bodyA.node?.name ?? ""
+            let teamBName = contact.bodyB.node?.name ?? ""
             
+            if teamAName != "" || teamAName != ""{
+            
+                let indexA:Int = self.getIndexOfTeamByName(teamName:teamAName)
+                let indexB:Int = self.getIndexOfTeamByName(teamName:teamBName)
+                
+                if indexA >= 0 && indexB >= 0 {
+                    
+                    var teamA = teams[indexA]
+                    var teamB = teams[indexB]
+            
+            if teamA.showPlayers().count > 0 && teamB.showPlayers().count > 0{
+                
+                let loser = conflict.fight(&teamA, &teamB)
+                print("Loser is \(loser.getName())")
+                
+                //Destroying the team that has lost
+                destroyTeam(team: loser)
+                
+                //resize of the team that has won
+                if loser.isEqual(teamA){
+                    updateSize(team: teamB)
+                }else{
+                    updateSize(team: teamA)
+                }
+                //updateSize(team:  ? teamA : teamB)
+                
+                //Updating the labels
+                updateLabel(team: teamA)
+                updateLabel(team: teamB)
+                
+            }
+                }
+            }
             }
         }
     }

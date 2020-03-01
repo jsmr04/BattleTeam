@@ -17,6 +17,11 @@
 		41B1146F2404901E008833D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41B1146D2404901E008833D9 /* Main.storyboard */; };
 		41B1147124049020008833D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41B1147024049020008833D9 /* Assets.xcassets */; };
 		41B1147424049020008833D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41B1147224049020008833D9 /* LaunchScreen.storyboard */; };
+		41DD54A9240C7DC400B8D2F0 /* M249.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD54A8240C7DC400B8D2F0 /* M249.swift */; };
+		41DD54AB240C7DE300B8D2F0 /* Bullup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD54AA240C7DE300B8D2F0 /* Bullup.swift */; };
+		41DD54AD240C7E0F00B8D2F0 /* Maverick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD54AC240C7E0F00B8D2F0 /* Maverick.swift */; };
+		41DD54AF240C7E3300B8D2F0 /* NightHawk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD54AE240C7E3300B8D2F0 /* NightHawk.swift */; };
+		41DD54B1240C7E4F00B8D2F0 /* UMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD54B0240C7E4F00B8D2F0 /* UMP.swift */; };
 		41DFD2EB24073BEC00C145A5 /* bomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E695E6240601D100B2EBB2 /* bomb.wav */; };
 		41DFD2EF24074F6400C145A5 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFD2EE24074F6400C145A5 /* MenuScene.swift */; };
 		41FD6B8E24083C3000BA6AF3 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FD6B8D24083C3000BA6AF3 /* Weapon.swift */; };
@@ -37,6 +42,11 @@
 		41B1147024049020008833D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41B1147324049020008833D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41B1147524049020008833D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41DD54A8240C7DC400B8D2F0 /* M249.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M249.swift; sourceTree = "<group>"; };
+		41DD54AA240C7DE300B8D2F0 /* Bullup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullup.swift; sourceTree = "<group>"; };
+		41DD54AC240C7E0F00B8D2F0 /* Maverick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maverick.swift; sourceTree = "<group>"; };
+		41DD54AE240C7E3300B8D2F0 /* NightHawk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightHawk.swift; sourceTree = "<group>"; };
+		41DD54B0240C7E4F00B8D2F0 /* UMP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMP.swift; sourceTree = "<group>"; };
 		41DFD2EE24074F6400C145A5 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		41E695E6240601D100B2EBB2 /* bomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bomb.wav; sourceTree = "<group>"; };
 		41FD6B8D24083C3000BA6AF3 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
@@ -70,6 +80,11 @@
 				41FD6B8F24083CC200BA6AF3 /* Team.swift */,
 				41FD6B9124083CCF00BA6AF3 /* Player.swift */,
 				1926C0EA240B697C00CA7187 /* Conflict.swift */,
+				41DD54A8240C7DC400B8D2F0 /* M249.swift */,
+				41DD54AA240C7DE300B8D2F0 /* Bullup.swift */,
+				41DD54AC240C7E0F00B8D2F0 /* Maverick.swift */,
+				41DD54AE240C7E3300B8D2F0 /* NightHawk.swift */,
+				41DD54B0240C7E4F00B8D2F0 /* UMP.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -210,10 +225,15 @@
 				4127A7D52405D97400FEA051 /* WeaponDelegate.swift in Sources */,
 				41B1146A2404901E008833D9 /* GameScene.swift in Sources */,
 				41B1146C2404901E008833D9 /* GameViewController.swift in Sources */,
+				41DD54AD240C7E0F00B8D2F0 /* Maverick.swift in Sources */,
 				41FD6B8E24083C3000BA6AF3 /* Weapon.swift in Sources */,
+				41DD54B1240C7E4F00B8D2F0 /* UMP.swift in Sources */,
 				41FD6B9024083CC200BA6AF3 /* Team.swift in Sources */,
 				1926C0EB240B697C00CA7187 /* Conflict.swift in Sources */,
 				41DFD2EF24074F6400C145A5 /* MenuScene.swift in Sources */,
+				41DD54AB240C7DE300B8D2F0 /* Bullup.swift in Sources */,
+				41DD54AF240C7E3300B8D2F0 /* NightHawk.swift in Sources */,
+				41DD54A9240C7DC400B8D2F0 /* M249.swift in Sources */,
 				4195E76D2405C2D4006A7907 /* Setting.swift in Sources */,
 				41FD6B9224083CCF00BA6AF3 /* Player.swift in Sources */,
 				41B114642404901E008833D9 /* AppDelegate.swift in Sources */,
