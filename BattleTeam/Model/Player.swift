@@ -15,7 +15,7 @@ class Player{
         self.health = pHealth
         self.alive = true
         var tempArray : [Weapon] = [Weapon]()
-        let weapon1 = Weapon(gunName : "Pstol", gunDamage: 1 , numBullet:  7 )
+        let weapon1 = Weapon(gunName : "Pistol", gunDamage: 1 , numBullet:  7 )
         let weapon2 = Weapon(gunName : "Shotgun", gunDamage: 10 , numBullet:  2 )
             
         tempArray.append(weapon1)
@@ -25,12 +25,11 @@ class Player{
     }
     
     func isAlive() -> Bool{
-        var check : Bool = true
-        if(self.getHealth() < 1 && self.getHealth() > Player.MAX_HEALTH)
-        {
-            check = false
+        if self.alive == true{
+            if self.getHealth() < 1 {
+                self.setAlive(alive: false)
+            }
         }
-        self.setAlive(alive: check)
         return self.alive
     }
     
@@ -89,23 +88,19 @@ class Player{
     func attack(otherPlayer : Player){
         let thisPlayerDamage : Int = self.getSelectedWeaponDamage()
         let otherPlayerDamage : Int = otherPlayer.getSelectedWeaponDamage()
-        print("Player\(self.getName()) and Player \(otherPlayer.getName()) are having a FIGHT!!")
+        
         // this player attacks
-        if(!dodge()){
-            otherPlayer.setHealth(health: otherPlayer.getHealth() - thisPlayerDamage)
-            print("Player \(self.getName()) attacked successfully. Player \(otherPlayer.getName())  \(otherPlayer.getHealth()) pts of health remaining.")
-        } else{
-            print("Player \(otherPlayer.getName()) has dodged the attacked of Player \(self.getName()).")
+        if !dodge(){
+            if otherPlayer.isAlive(){
+                otherPlayer.setHealth(health: otherPlayer.getHealth() - thisPlayerDamage)
+            }
         }
+        
         // other player attacks
-        if(!dodge())
-        {
-            self.setHealth(health: self.getHealth() - otherPlayerDamage)
-            print("Player \(otherPlayer.getName()) attacked successfully. Player \(self.getName())  \(self.getHealth()) pts of health remaining.")
-        }
-        else
-        {
-                print("Player \(self.getName()) has dodged the attacked of Player \(otherPlayer.getName()).")
+        if !dodge(){
+            if self.isAlive(){
+                self.setHealth(health: self.getHealth() - otherPlayerDamage)
+            }
         }
     }
         
@@ -113,7 +108,7 @@ class Player{
         if(self.getSelectedWeapon() < (weapons.count - 1))
         {
             self.setSelectedWeapon(selectedWeapon: (self.getSelectedWeapon() + 1) )
-            print("Player \(self.getName()) has upgraded his weapon to \(weapons[selectedWeapon].getName()).")
+            //print("Player \(self.getName()) has upgraded his weapon to \(weapons[selectedWeapon].getName()).")
         }
     }
     

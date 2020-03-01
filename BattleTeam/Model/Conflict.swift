@@ -13,7 +13,9 @@ class Conflict{
     func fight(_ team1: Team, _ team2: Team) -> String{
         var result: String = ""
         var running: Bool = true
-        while(running){
+        var i = 0
+        
+        while(i < 2){
             let pFrom1 = Int.random(in: 0..<(team1.getPlayers().count))
             let pFrom2 = Int.random(in: 0..<(team2.getPlayers().count))
             
@@ -22,7 +24,6 @@ class Conflict{
             }
             
             while (team1.getPlayers()[pFrom1].isAlive() == true && team2.getPlayers()[pFrom2].isAlive() == true){
-                
                 team1.getPlayers()[pFrom1].attack(otherPlayer: team2.getPlayers()[pFrom2])
             }
             
@@ -46,10 +47,12 @@ class Conflict{
                     player.upgradeWeapon()
                 }
             }
+            i += 1
+            
         }
         
-        team1.calculateRadius()
-        team2.calculateRadius()
+        //team1.calculateRadius()
+        //team2.calculateRadius()
         
         return result
     }

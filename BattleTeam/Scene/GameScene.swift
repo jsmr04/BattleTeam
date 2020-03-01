@@ -22,7 +22,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         setupPhysics()
-        addBackground()
+        //addBackground()
         layoutScene()
     }
     func layoutScene(){
@@ -317,17 +317,20 @@ class GameScene: SKScene {
 
 extension GameScene:SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
+        let conflict = Conflict.init()
+        
         if status == GameStatus.playing{
         if contact.bodyA.categoryBitMask == PhysicsCategories.teamCategory && contact.bodyB.categoryBitMask == PhysicsCategories.teamCategory {
             
-                       
             let teamA = self.getTeamByName(teamName: contact.bodyA.node?.name ?? "")
-            
             let teamB = self.getTeamByName(teamName: contact.bodyB.node?.name ?? "")
             
             print("Body A \(String(describing: teamA.getName())), Body B \(String(describing: teamB.getName()))")
             
             self.stopSprites()
+            
+            let loser = conflict.fight(teamA, teamB)
+            print(loser)
             destroyTeam(team: teamB)
             
             }

@@ -6,8 +6,8 @@ class Team
     private var colour : UIColor
     private var radius : Int
     private var status : Bool
-    private var imageName:String
-    private var sprite:SKSpriteNode?
+    private var imageName: String
+    private var sprite: SKSpriteNode?
     private var players : [Player]
     private var checkedPlayers : [Player]
     private static let MAX_NUMBER_OF_PLAYER : Int = 20
@@ -52,6 +52,9 @@ class Team
             if p.isAlive(){
                 checkedPlayers.append(p)
             }
+            else{
+                print("Dead")
+            }
         }
         return checkedPlayers
     }
@@ -71,7 +74,7 @@ class Team
     }
     
     func generatePlayers() {
-        let numberPlayers:Int = Int.random(in: Team.self.MIN_NUMBER_OF_PLAYER ... Team.self.MAX_NUMBER_OF_PLAYER)
+        let numberPlayers: Int = Int.random(in: Team.self.MIN_NUMBER_OF_PLAYER ... Team.self.MAX_NUMBER_OF_PLAYER)
               
         for i in 1 ... numberPlayers{
             self.players.append(Player(pName: self.name + "_P\(String(i))", pHealth: 100))
