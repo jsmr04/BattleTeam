@@ -246,6 +246,7 @@ class GameScene: SKScene {
         winnerLabel.run( SKAction.sequence([fadeOut, fadeIn]), completion: {
             self.animateFlagWinner(teamName:team.getImageName())
             self.status = .ended
+            self.saveScore(team: team)
         })
     }
     
@@ -323,6 +324,16 @@ class GameScene: SKScene {
         run(soundVariable)
     }
     
+    func saveScore(team:Team){
+        var score:Int = 0
+        score = UserDefaults.standard.integer(forKey: "score_" + team.getName())
+        //Increasing number of victories
+        score = score + 1
+        print("New score \(score)")
+        //Updating score
+        UserDefaults.standard.set(score, forKey: "score_" + team.getName())
+        
+    }
     func checkWinner() -> Bool{
         var check:Bool = false
         teamLeft = teamLeft - 1
