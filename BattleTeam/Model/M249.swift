@@ -9,10 +9,11 @@
 import UIKit
 //Extended Class M249
 public class M249 :Weapon {
-    let damageMultiplier: Float = 1.5
-    init(numBullets: Int, name: String, damage: Int) {
-    let newDamage = Int(self.damageMultiplier * Float (damage))
-    super.init(numBullets, name, newDamage)
+    let damageMultiplier: Float = 1.4
+    
+    init(numBullets: Int, name: String) {
+        let newDamage = Int(self.damageMultiplier * Float (Weapon.DEFAULT_DAMAGE))
+        super.init(numBullets, name, newDamage)
     }
 //Overriding the function fire
     override func fire() -> Int {

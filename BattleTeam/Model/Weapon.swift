@@ -9,11 +9,12 @@
 import UIKit
 
 // Parent Weapon Class
-public class Weapon {
-    var name: String
-    var numBullets: Int
+public class Weapon:WeaponDelegate {
+    private var name: String
+    private var numBullets: Int
     internal var damage :Int
     private let maxNoOfBullets: Int = 30
+    internal static let DEFAULT_DAMAGE = 10
 
     func getName() -> String {
         return self.name
@@ -35,10 +36,10 @@ public class Weapon {
     }
     
 //Constructor of Class Weapon
-    init(_ numBullets :Int, _ name: String, _ damage: Int) {
+    init(_ numBullets :Int, _ name: String, _ newDamage:Int) {
         self.numBullets = numBullets
         self.name = name
-        self.damage = damage
+        self.damage = newDamage
     }
     
 //Function reload to set number of bullets to maximum numbers of bullets

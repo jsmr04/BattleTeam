@@ -3,23 +3,25 @@ class Player{
     private static var HEALTH_INCREASE_BY = 2
     private var health: Int
     private var name: String
-    var weapons : [Weapon]
     private var selectedWeapon : Int = 0
     private static var MAX_HEALTH : Int = 100
     private var alive : Bool
+    var weaponsDelegate:[WeaponDelegate]
     
     // CONSTUCTOR
     init(pName : String , pHealth : Int ){
         self.name = pName
         self.health = pHealth
         self.alive = true
-        var tempArray : [Weapon] = [Weapon]()
-        let weapon1:Weapon = Weapon(10, "pistol", 10)
 
-            
-        tempArray.append(weapon1)
+        self.weaponsDelegate = [WeaponDelegate]()
+        
+        self.weaponsDelegate.append(NightHawk(numBullets: 30, name: "NightHawk"))
+        self.weaponsDelegate.append(UMP(numBullets: 30, name: "UMP"))
+        self.weaponsDelegate.append(Maverick(numBullets: 30, name: "Maverick"))
+        self.weaponsDelegate.append(Bullup(numBullets: 30, name: "Bullup"))
+        self.weaponsDelegate.append(M249(numBullets: 30, name: "M249"))
 
-        self.weapons = tempArray
         self.selectedWeapon = 0
     }
     
@@ -40,16 +42,16 @@ class Player{
         return self.name
     }
     
-    func getWeapon() -> [Weapon]{
-        return self.weapons
+    func getWeapon() -> [WeaponDelegate]{
+        return self.weaponsDelegate
     }
     
     func getSelectedWeapon() -> Int {
         return self.selectedWeapon
     }
     
-    func addWeapon(weapon : Weapon) {
-        self.weapons.append(weapon)
+    func addWeapon(weapon : WeaponDelegate) {
+        self.weaponsDelegate.append(weapon)
     }
     
     func setSelectedWeapon(selectedWeapon : Int)
@@ -57,9 +59,15 @@ class Player{
         self.selectedWeapon = selectedWeapon
     }
     
-    func setHealth(health : Int)
+    func setHealth(health : Int) throws
     {
-        self.health = health
+        if health > Player.MAX_HEALTH{
+            throw PlayerError.healthGraterThanDefaultExcepcion("New health exceeds maximum health allowed, \(Player.MAX_HEALTH)")
+        }else{
+            self.health = health
+        }
+        
+        
     }
     
     func getHealth() -> Int
@@ -68,7 +76,7 @@ class Player{
     }
     
     func getSelectedWeaponDamage() -> Int{
-        return self.weapons[selectedWeapon].getDamage()
+        return self.weaponsDelegate[selectedWeapon].getDamage()
     }
     
     //for healing
@@ -76,9 +84,25 @@ class Player{
         if(self.getHealth() < 100){
             if(self.isAlive()){
                 if (self.getHealth() == 99){
-                    self.setHealth(health: Player.MAX_HEALTH)
+                    
+                    do {
+                         try self.setHealth(health: Player.MAX_HEALTH)
+                    }catch PlayerError.healthGraterThanDefaultExcepcion(let msg){
+                        print(msg)
+                    }catch{
+                        print("Error setting health")
+                    }
                 } else {
-                    self.setHealth(health: (self.getHealth()+Player.HEALTH_INCREASE_BY))
+                    
+                    do {
+                         try self.setHealth(health: (self.getHealth()+Player.HEALTH_INCREASE_BY))
+                    }catch PlayerError.healthGraterThanDefaultExcepcion(let msg){
+                        print(msg)
+                    }catch{
+                        print("Error setting health")
+                    }
+                    
+                    
                 }
             }
         }
@@ -88,17 +112,34 @@ class Player{
         let thisPlayerDamage : Int = self.getSelectedWeaponDamage()
         let otherPlayerDamage : Int = otherPlayer.getSelectedWeaponDamage()
         
+        //Function type
+        let fDodge:()->Bool = dodge
+        
         // this player attacks
-        if !dodge(){
+        if fDodge() {
             if otherPlayer.isAlive(){
-                otherPlayer.setHealth(health: otherPlayer.getHealth() - thisPlayerDamage)
+                
+                do {
+                     try otherPlayer.setHealth(health: otherPlayer.getHealth() - thisPlayerDamage)
+                }catch PlayerError.healthGraterThanDefaultExcepcion(let msg){
+                    print(msg)
+                }catch{
+                    print("Error setting health")
+                }
             }
         }
         
         // other player attacks
-        if !dodge(){
+        if fDodge() {
             if self.isAlive(){
-                self.setHealth(health: self.getHealth() - otherPlayerDamage)
+                
+                do {
+                     try self.setHealth(health: self.getHealth() - otherPlayerDamage)
+                }catch PlayerError.healthGraterThanDefaultExcepcion(let msg){
+                    print(msg)
+                }catch{
+                    print("Error setting health")
+                }
             }
         }
         
@@ -114,10 +155,10 @@ class Player{
     }
         
     func upgradeWeapon(){
-        if(self.getSelectedWeapon() < (weapons.count - 1))
+        if(self.getSelectedWeapon() < (weaponsDelegate.count - 1))
         {
             self.setSelectedWeapon(selectedWeapon: (self.getSelectedWeapon() + 1) )
-            //print("Player \(self.getName()) has upgraded his weapon to \(weapons[selectedWeapon].getName()).")
+            print("Player \(self.getName()) has upgraded his weapon to \(weaponsDelegate[selectedWeapon].getName()).")
         }
     }
     
@@ -130,3 +171,6 @@ class Player{
     
 }
 
+enum PlayerError:Error{
+    case healthGraterThanDefaultExcepcion(String)
+}

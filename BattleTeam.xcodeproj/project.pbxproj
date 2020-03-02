@@ -17,6 +17,7 @@
 		41B1146F2404901E008833D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41B1146D2404901E008833D9 /* Main.storyboard */; };
 		41B1147124049020008833D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41B1147024049020008833D9 /* Assets.xcassets */; };
 		41B1147424049020008833D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41B1147224049020008833D9 /* LaunchScreen.storyboard */; };
+		41D9AE0D240D6A1500C304AA /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D9AE0C240D6A1500C304AA /* ScoreScene.swift */; };
 		41DD54A9240C7DC400B8D2F0 /* M249.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD54A8240C7DC400B8D2F0 /* M249.swift */; };
 		41DD54AB240C7DE300B8D2F0 /* Bullup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD54AA240C7DE300B8D2F0 /* Bullup.swift */; };
 		41DD54AD240C7E0F00B8D2F0 /* Maverick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD54AC240C7E0F00B8D2F0 /* Maverick.swift */; };
@@ -42,6 +43,7 @@
 		41B1147024049020008833D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41B1147324049020008833D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41B1147524049020008833D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41D9AE0C240D6A1500C304AA /* ScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
 		41DD54A8240C7DC400B8D2F0 /* M249.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M249.swift; sourceTree = "<group>"; };
 		41DD54AA240C7DE300B8D2F0 /* Bullup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullup.swift; sourceTree = "<group>"; };
 		41DD54AC240C7E0F00B8D2F0 /* Maverick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maverick.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				41B114692404901E008833D9 /* GameScene.swift */,
 				41DFD2EE24074F6400C145A5 /* MenuScene.swift */,
+				41D9AE0C240D6A1500C304AA /* ScoreScene.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				41B1146C2404901E008833D9 /* GameViewController.swift in Sources */,
 				41DD54AD240C7E0F00B8D2F0 /* Maverick.swift in Sources */,
 				41FD6B8E24083C3000BA6AF3 /* Weapon.swift in Sources */,
+				41D9AE0D240D6A1500C304AA /* ScoreScene.swift in Sources */,
 				41DD54B1240C7E4F00B8D2F0 /* UMP.swift in Sources */,
 				41FD6B9024083CC200BA6AF3 /* Team.swift in Sources */,
 				1926C0EB240B697C00CA7187 /* Conflict.swift in Sources */,

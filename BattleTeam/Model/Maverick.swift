@@ -11,9 +11,10 @@ import UIKit
 //Extended Class Maverick
 public class Maverick :Weapon {
     let damageMultiplier: Float = 1.2
-    init(numBullets: Int, name: String, damage: Int) {
-    let newDamage = Int(self.damageMultiplier * Float (damage))
-    super.init(numBullets, name, newDamage)
+    
+    init(numBullets: Int, name: String) {
+        let newDamage = Int(self.damageMultiplier * Float (Weapon.DEFAULT_DAMAGE))
+        super.init(numBullets, name, newDamage)
     }
 //Overriding the function fire
     override func fire() -> Int {

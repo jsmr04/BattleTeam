@@ -9,5 +9,11 @@
 protocol WeaponDelegate {
     
     func getName() -> String
-    func setName(pName:String)
+    func setName(name: String)
+    func getNumBullets() -> Int
+    func setNumBullets(numBullets :Int)
+    func getDamage() -> Int
+    func setDamage(damage :Int)
+    func reload() -> Int
+    func fire() -> Int
 }
