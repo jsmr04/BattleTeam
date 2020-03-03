@@ -11,7 +11,8 @@ import SpriteKit
 class ScoreScene: SKScene {
     
     override func didMove(to view: SKView) {
-        addBackground()
+        //addBackground("scoreBackground")
+        self.addChild(addBackground("scoreBackground", self.frame))
         showLabels()
     }
     
@@ -22,6 +23,7 @@ class ScoreScene: SKScene {
     
     func showLabels(){
         var positionY:CGFloat = (frame.maxY - frame.maxY / 4)
+        var teamScore: [String: Int] = [:]
         
         let headLabel = SKLabelNode(text: "Score")
         headLabel.fontColor = UIColor.white
@@ -37,33 +39,29 @@ class ScoreScene: SKScene {
         
         for (key, value) in UserDefaults.standard.dictionaryRepresentation(){
             if key.starts(with: "score_"){
-                print("\(key), \(value)")
-                var text = key.replacingOccurrences(of: "score_", with: "")
-                let teamLabel = SKLabelNode(text: "\(text): \(value)")
-                teamLabel.fontColor = UIColor.white
-                teamLabel.fontSize = 80
-                teamLabel.horizontalAlignmentMode = .left
-                teamLabel.fontName = "Helvetica-Bold"
-                teamLabel.position = CGPoint(x: frame.minX + 50, y: positionY)
-                teamLabel.zPosition = ZPosition.label
-                
-                positionY = positionY - (teamLabel.frame.height + 30)
-                
-                addChild(teamLabel)
+                let text = key.replacingOccurrences(of: "score_", with: "")
+                teamScore[text] = (value as! Int)
             }
         }
+        
+        let sortedArray = teamScore.sorted{$0.1 > $1.1}
+        
+        for p in sortedArray{
+            
+            let teamLabel = SKLabelNode(text: "\(p.key): \(p.value)")
+            teamLabel.fontColor = UIColor.white
+            teamLabel.fontSize = 65
+            teamLabel.horizontalAlignmentMode = .left
+            teamLabel.fontName = "Helvetica-Bold"
+            teamLabel.position = CGPoint(x: frame.minX + 50, y: positionY)
+            teamLabel.zPosition = ZPosition.label
+            
+            positionY = positionY - (teamLabel.frame.height + 30)
+            
+            addChild(teamLabel)
+        }
+        
+        
     }
-
-    func addBackground(){
-        let background = SKSpriteNode(imageNamed: "mainScreenBackground")
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
-        background.size = frame.size
-        background.zPosition = ZPosition.background
-        background.anchorPoint = CGPoint(x: 0.5,y: 0.5)
-
-        self.addChild(background)
-    }
-    
-    
 }
 

@@ -29,3 +29,15 @@ enum Effects{
 enum TeamCharacteristic{
     static let defaultSize:CGFloat = 15
 }
+
+func addBackground(_ nameBackground: String, _ frame: CGRect  ) -> SKSpriteNode{
+    let background = SKSpriteNode(imageNamed: nameBackground)
+    background.position = CGPoint(x: frame.midX, y: frame.midY)
+    background.size = frame.size
+    background.zPosition = ZPosition.background
+    background.anchorPoint = CGPoint(x: 0.5,y: 0.5)
+    
+    return background
+    //self.addChild(background)
+
+}

@@ -67,13 +67,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		41345B8424085D8300E3C231 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
 		4195E76E2405C907006A7907 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,7 +103,6 @@
 		41B114622404901E008833D9 /* BattleTeam */ = {
 			isa = PBXGroup;
 			children = (
-				41345B8424085D8300E3C231 /* Util */,
 				4195E76E2405C907006A7907 /* Model */,
 				41B1147E24049C36008833D9 /* Scene */,
 				41B1147B24049231008833D9 /* Assets */,

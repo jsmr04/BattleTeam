@@ -14,6 +14,6 @@ protocol WeaponDelegate {
     func setNumBullets(numBullets :Int)
     func getDamage() -> Int
     func setDamage(damage :Int)
-    func reload() -> Int
+    func reload() -> Void
     func fire() -> Int
 }

@@ -13,7 +13,6 @@ class Conflict{
     func fight(_ team1: inout Team, _ team2: inout Team) -> Team{
         var running: Bool = true
         var loser:Team?
-       
         while(running){
             let pFrom1 = Int.random(in: 0..<(team1.showPlayers().count))
             let pFrom2 = Int.random(in: 0..<(team2.showPlayers().count))

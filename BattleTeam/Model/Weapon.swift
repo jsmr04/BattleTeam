@@ -43,9 +43,9 @@ public class Weapon:WeaponDelegate {
     }
     
 //Function reload to set number of bullets to maximum numbers of bullets
-    func reload() -> Int {
+    func reload() {
         self.setNumBullets(numBullets: self.maxNoOfBullets)
-        return self.getNumBullets()
+
     }
 
     func fire() -> Int {

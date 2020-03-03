@@ -12,20 +12,20 @@ class MenuScene: SKScene {
     override func didMove(to view: SKView) {
            
         //backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha:1.0)
-        addBackground()
+        self.addChild(addBackground("menuBackground", self.frame))
         addLabels()
     }
     
-    func addBackground(){
-        let background = SKSpriteNode(imageNamed: "mainScreenBackground")
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
-        background.size = frame.size
-        background.zPosition = ZPosition.background
-        background.anchorPoint = CGPoint(x: 0.5,y: 0.5)
-
-        self.addChild(background)
-
-    }
+//    func addBackground(_ nameBackground: String){
+//        let background = SKSpriteNode(imageNamed: nameBackground)
+//        background.position = CGPoint(x: frame.midX, y: frame.midY)
+//        background.size = frame.size
+//        background.zPosition = ZPosition.background
+//        background.anchorPoint = CGPoint(x: 0.5,y: 0.5)
+//
+//        self.addChild(background)
+//
+//    }
     func addLogo(){
         let logo = SKSpriteNode(imageNamed: "logo")
         logo.size = CGSize(width: frame.width / 3, height: frame.width / 3)
@@ -38,7 +38,7 @@ class MenuScene: SKScene {
         playLabel.name = "play"
         playLabel.fontName = "AvenirNext-Bold"
         playLabel.fontSize = 90.0
-        playLabel.fontColor = UIColor.black
+        playLabel.fontColor = UIColor.white
         playLabel.zPosition = ZPosition.label
         playLabel.position = CGPoint(x: frame.midX, y: frame.midY - 60)
         addChild(playLabel)
@@ -48,7 +48,7 @@ class MenuScene: SKScene {
         scoreLabel.name = "score"
         scoreLabel.fontName = "AvenirNext-Bold"
         scoreLabel.fontSize = 65.0
-        scoreLabel.fontColor = UIColor.black
+        scoreLabel.fontColor = UIColor.white
         scoreLabel.zPosition = ZPosition.label
         scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY - 140)
         addChild(scoreLabel)
