@@ -24,4 +24,4 @@ You are requested to create a project in XCode and represent graphics for your b
 * GameplayKit
 * SpriteKit
 
-## Screenshot
+## Screenshots
