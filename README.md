@@ -25,3 +25,21 @@ You are requested to create a project in XCode and represent graphics for your b
 * SpriteKit
 
 ## Screenshots
+**Main Screen**
+
+![](/BattleTeam-images/main.png)
+
+**Battle**
+
+![](/BattleTeam-images/battle2.png)
+
+![](/BattleTeam-images/battle.png)
+
+**Winner**
+
+![](/BattleTeam-images/winner.png)
+
+**Score**
+
+![](/BattleTeam-images/score.png)
+
