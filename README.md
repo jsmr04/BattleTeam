@@ -1,6 +1,6 @@
 # BattleTeam
 
-This is a college's project for IOS Programming Fundamentals course. In this project I demonstrated things I learned through the course. 
+This is a college's project for iOS Programming Fundamentals course. In this project I demonstrated things I learned through the course. 
 
 ## Requirements
 For your final project, you are requested to use swift and develop an application to simulation a battle among teams. The following components are ingredients for a battle:
@@ -18,6 +18,9 @@ You are requested to create a project in XCode and represent graphics for your b
 * Multiple Teams
 * Players Counter
 * Score
+
+## Platform
+* iOS
 
 ## Built With
 * XCode
